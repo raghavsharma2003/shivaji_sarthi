@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Bot } from "lucide-react";
+import { Bot, Sparkles } from "lucide-react";
 
 export function AIInsights({ insights }: { insights: string[] }) {
     const [currentIndex, setCurrentIndex] = useState(0);
@@ -16,12 +16,12 @@ export function AIInsights({ insights }: { insights: string[] }) {
     }, [insights.length]);
 
     return (
-        <div className="relative flex w-full items-start gap-3 overflow-hidden rounded-[10px] bg-[var(--color-ink-3)] p-4 border-l-2 border-l-[var(--color-saffron)]">
-            <div className="flex h-6 items-center gap-1.5 rounded-[4px] bg-[var(--color-saffron)]/10 px-2 text-xs font-bold text-[var(--color-saffron)] mt-0.5">
-                <Bot size={14} />
-                <span>AI</span>
+        <div className="relative flex min-h-[140px] items-center overflow-hidden rounded-[16px] bg-gradient-to-br from-[var(--color-navy)] to-[var(--color-navy-soft)] p-6 shadow-[var(--shadow-md)]">
+            <div className="absolute left-6 top-6 flex items-center gap-2">
+                <Sparkles className="h-6 w-6 text-[#F5A623]" />
+                <h3 className="text-sm font-bold tracking-tight text-white/90">AI Insights</h3>
             </div>
-            <div className="flex-1 relative h-6">
+            <div className="flex-1 relative h-6 mt-10"> {/* Adjusted margin-top for content */}
                 <AnimatePresence mode="wait">
                     <motion.div
                         key={currentIndex}

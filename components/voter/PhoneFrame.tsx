@@ -22,7 +22,7 @@ export function PhoneFrame({ children }: { children: React.ReactNode }) {
             {/* Glow Effect around phone is usually applied on the container outside, but we can do inner shadows too */}
 
             {/* Screen area */}
-            <div className="relative h-full w-full overflow-hidden bg-[var(--color-ink-2)] text-white">
+            <div className="relative h-full w-full overflow-hidden bg-[var(--color-surface)] text-[var(--color-text-main)]">
 
                 {/* Status Bar */}
                 <div className="absolute top-0 z-50 flex h-12 w-full items-center justify-between px-6 px-safe pt-2">
@@ -49,7 +49,7 @@ export function PhoneFrame({ children }: { children: React.ReactNode }) {
                 </div>
 
                 {/* Home Indicator */}
-                <div className="absolute bottom-1 left-1/2 h-1 w-1/3 -translate-x-1/2 rounded-full bg-white/40" />
+                <div className="absolute bottom-1 left-1/2 h-1 w-1/3 -translate-x-1/2 rounded-full bg-[var(--color-text-main)]/30" />
             </div>
         </div>
     );

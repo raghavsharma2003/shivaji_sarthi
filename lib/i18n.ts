@@ -7,6 +7,9 @@ export const strings = {
             map: "District Map",
             voterApp: "Voter App",
         },
+        topNav: {
+            live: "Live",
+        },
         dashboard: {
             title: "Analytics Overview",
             subtitle: "AI insights updated every 6 hours",
@@ -85,6 +88,9 @@ export const strings = {
             posts: "पोस्ट प्रदर्शन",
             map: "जिला नक्शा",
             voterApp: "मतदाता ऐप",
+        },
+        topNav: {
+            live: "लाइव",
         },
         dashboard: {
             title: "विश्लेषण अवलोकन",

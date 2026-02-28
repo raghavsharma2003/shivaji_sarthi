@@ -40,8 +40,8 @@ export default function QuestionsPage() {
             <button
                 onClick={() => onChange("All")}
                 className={`shrink-0 rounded-full px-4 py-1.5 text-xs font-medium transition-colors border ${active === "All"
-                        ? "bg-[var(--color-saffron)] text-white border-[var(--color-saffron)]"
-                        : "bg-[var(--color-ink-3)] text-[var(--color-muted)] border-[var(--color-border)] hover:text-white"
+                    ? "bg-[var(--color-saffron)] text-white border-[var(--color-saffron)] shadow-sm"
+                    : "bg-[var(--color-surface)] text-[var(--color-text-mid)] border-[var(--color-border)] hover:text-[var(--color-text-main)] hover:bg-[var(--color-surface-hover)] shadow-sm"
                     }`}
             >
                 {t.questions.filters.all}
@@ -51,8 +51,8 @@ export default function QuestionsPage() {
                     key={opt}
                     onClick={() => onChange(opt)}
                     className={`shrink-0 rounded-full px-4 py-1.5 text-xs font-medium font-hindi transition-colors border ${active === opt
-                            ? "bg-[var(--color-saffron)] text-white border-[var(--color-saffron)]"
-                            : "bg-[var(--color-ink-3)] text-[var(--color-muted)] border-[var(--color-border)] hover:text-white"
+                        ? "bg-[var(--color-saffron)] text-white border-[var(--color-saffron)] shadow-sm"
+                        : "bg-[var(--color-surface)] text-[var(--color-text-mid)] border-[var(--color-border)] hover:text-[var(--color-text-main)] hover:bg-[var(--color-surface-hover)] shadow-sm"
                         }`}
                 >
                     {opt === "Urgent" ? "🔴 " : opt === "Medium" ? "🟡 " : opt === "Low" ? "🟢 " : ""}
@@ -66,14 +66,14 @@ export default function QuestionsPage() {
         <div className="flex h-full flex-col gap-6 animate-in fade-in duration-500 pb-20 md:pb-6">
             <div className="flex flex-col sm:flex-row gap-4 items-start sm:items-center justify-between">
                 <div className="flex items-center gap-3">
-                    <h2 className="text-xl font-semibold tracking-tight text-white">{t.questions.title}</h2>
-                    <span className="rounded-full bg-[var(--color-ink-3)] px-3 py-1 text-xs font-medium text-[var(--color-muted)]">
+                    <h2 className="text-xl font-semibold tracking-tight text-[var(--color-text-main)]">{t.questions.title}</h2>
+                    <span className="rounded-full bg-[var(--color-surface)] border border-[var(--color-border)] px-3 py-1 text-xs font-semibold text-[var(--color-text-soft)] shadow-sm">
                         {mockQuestions.length} total
                     </span>
                 </div>
                 <div className="flex items-center gap-3">
-                    <div className="flex items-center gap-1.5 rounded-full bg-[var(--color-danger)]/10 px-3 py-1 text-xs font-medium text-[var(--color-danger)] border border-[var(--color-danger)]/20">
-                        <div className="h-1.5 w-1.5 rounded-full bg-[var(--color-danger)] animate-pulse" />
+                    <div className="flex items-center gap-1.5 rounded-full bg-[var(--color-red-light)] px-3 py-1 text-xs font-medium text-[var(--color-red)] border border-[var(--color-red)]/20 shadow-sm">
+                        <div className="h-1.5 w-1.5 rounded-full bg-[var(--color-red)] animate-pulse" />
                         23 {t.questions.urgentAlert}
                     </div>
                     <Button variant="secondary" size="sm" className="gap-2 text-[var(--color-saffron)] border-[var(--color-saffron)]/30 hover:border-[var(--color-saffron)]">
@@ -94,7 +94,7 @@ export default function QuestionsPage() {
                     <QuestionCard key={q.id} question={q} onClick={() => setSelectedQuestion(q)} />
                 ))}
                 {filteredQuestions.length === 0 && (
-                    <div className="col-span-full flex h-40 items-center justify-center rounded-[10px] border border-dashed border-[var(--color-border)] text-sm text-[var(--color-muted)]">
+                    <div className="col-span-full flex h-40 items-center justify-center rounded-[10px] border border-dashed border-[var(--color-border)] bg-[var(--color-surface)] text-sm text-[var(--color-text-soft)]">
                         No questions match selected filters.
                     </div>
                 )}

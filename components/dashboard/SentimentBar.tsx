@@ -24,7 +24,7 @@ export function SentimentBar({ items }: { items: SentimentItem[] }) {
                             {item.alert && <AlertTriangle size={14} className="text-[var(--color-warning)]" />}
                         </div>
 
-                        <div className="relative h-2 flex-1 rounded-full bg-[var(--color-ink-3)] overflow-hidden">
+                        <div className="relative flex-1 h-1.5 overflow-hidden rounded-full bg-[var(--color-border)]">
                             <motion.div
                                 initial={{ width: 0 }}
                                 animate={{ width: `${item.percentage}%` }}
@@ -33,9 +33,9 @@ export function SentimentBar({ items }: { items: SentimentItem[] }) {
                             />
                         </div>
 
-                        <div className="w-10 shrink-0 text-right text-xs font-mono font-medium text-[var(--color-muted)]">
+                        <span className="w-10 shrink-0 text-right text-xs font-semibold text-[var(--color-text-mid)] font-hindi">
                             {item.percentage}%
-                        </div>
+                        </span>
                     </div>
                 );
             })}

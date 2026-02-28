@@ -2,40 +2,44 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { LayoutDashboard, MessageSquare, Map, Smartphone } from "lucide-react";
-import { useLanguage } from "@/lib/hooks/useLanguage";
+import { LayoutDashboard, MessageSquareText, Map, Smartphone } from "lucide-react";
 import { cn } from "@/lib/utils";
 
-const mobileNavConfig = [
-    { path: "/dashboard", icon: LayoutDashboard, labelKey: "dashboard" as const },
-    { path: "/questions", icon: MessageSquare, labelKey: "questions" as const },
-    { path: "/voter", icon: Smartphone, labelKey: "voterApp" as const },
-    { path: "/map", icon: Map, labelKey: "map" as const },
+const NAV_ITEMS = [
+    { href: "/dashboard", icon: LayoutDashboard, label: "Analytics" },
+    { href: "/questions", icon: MessageSquareText, label: "Questions" },
+    { href: "/map", icon: Map, label: "Heatmap" },
+    { href: "/voter", icon: Smartphone, label: "Voter App" },
 ];
 
 export function MobileNav() {
     const pathname = usePathname();
-    const { t } = useLanguage();
 
     return (
-        <nav className="fixed bottom-0 left-0 right-0 z-40 flex h-16 items-center justify-around border-t border-[var(--color-border)] bg-[var(--color-ink-2)] md:hidden">
-            {mobileNavConfig.map((item) => {
-                const isActive = pathname.startsWith(item.path);
+        <div className="fixed bottom-0 left-0 right-0 z-50 flex h-16 items-center justify-around border-t border-[var(--color-border)] bg-[var(--color-surface)] px-2 pb-safe md:hidden shadow-[0_-4px_12px_rgba(0,0,0,0.03)]">
+            {NAV_ITEMS.map((item) => {
+                const isActive = pathname.startsWith(item.href);
+                const Icon = item.icon;
 
                 return (
                     <Link
-                        key={item.path}
-                        href={item.path}
+                        key={item.href}
+                        href={item.href}
                         className={cn(
-                            "flex flex-1 flex-col items-center justify-center gap-1.5 transition-colors",
-                            isActive ? "text-[var(--color-saffron)]" : "text-[var(--color-muted)] hover:text-white"
+                            "flex flex-col items-center justify-center gap-1 min-w-[64px] py-1 transition-colors",
+                            isActive ? "text-[var(--color-saffron)]" : "text-[var(--color-text-soft)] hover:text-[var(--color-text-main)]"
                         )}
                     >
-                        <item.icon size={20} />
-                        <span className="text-[10px] font-medium leading-none">{t.nav[item.labelKey]}</span>
+                        <Icon size={22} className={cn(isActive && "fill-[var(--color-saffron-pale)] stroke-[var(--color-saffron)]")} />
+                        <span className={cn(
+                            "text-[10px] font-semibold tracking-wide",
+                            isActive ? "font-bold text-[var(--color-text-main)]" : ""
+                        )}>
+                            {item.label}
+                        </span>
                     </Link>
                 );
             })}
-        </nav>
+        </div>
     );
 }

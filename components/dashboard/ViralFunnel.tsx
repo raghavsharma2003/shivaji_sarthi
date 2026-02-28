@@ -22,8 +22,8 @@ export function ViralFunnel() {
     return (
         <Card className="flex flex-col gap-4 overflow-hidden">
             <div className="flex items-center justify-between">
-                <h3 className="font-semibold text-white tracking-tight">Viral Funnel Performance</h3>
-                <span className="text-xs text-[var(--color-muted)]">Past 7 days</span>
+                <div className="text-2xl font-black text-[var(--color-text-main)] tracking-tight">Viral Funnel Performance</div>
+                <div className="mt-4 text-[13px] text-[var(--color-text-mid)]">Past 7 days</div>
             </div>
 
             <div className="flex w-full flex-col md:flex-row items-center justify-between gap-4 overflow-x-auto no-scrollbar pb-2">
@@ -32,7 +32,7 @@ export function ViralFunnel() {
                         <div className="flex flex-col items-center gap-2">
                             <div className="flex h-20 w-32 flex-col items-center justify-center rounded-lg border border-[var(--color-border)] bg-[var(--color-ink-3)] p-3 relative hover:border-[var(--color-saffron)] transition-colors">
                                 <span className="text-xl font-mono font-bold text-white tracking-tight">{step.value}</span>
-                                <span className="text-[11px] font-medium text-[var(--color-muted)] uppercase tracking-wider">{step.label}</span>
+                                <div className="text-[10px] font-semibold text-[var(--color-text-soft)] mt-1 uppercase tracking-wider">{step.label}</div>
 
                                 {step.isTargetMet && (
                                     <div className="absolute -top-2 -right-2 flex items-center justify-center rounded-full bg-[var(--color-positive)] p-1 text-white shadow-sm ring-2 ring-[var(--color-ink-2)]">
@@ -43,8 +43,8 @@ export function ViralFunnel() {
 
                             {step.conversion && (
                                 <div className={`rounded-full px-2 py-0.5 text-[10px] font-bold ${step.isTargetMet
-                                        ? "bg-[var(--color-positive)]/20 text-[var(--color-positive)]"
-                                        : "bg-[var(--color-ink-3)] text-[var(--color-muted)]"
+                                    ? "bg-[var(--color-positive)]/20 text-[var(--color-positive)]"
+                                    : "bg-[var(--color-off-white)] text-[var(--color-muted)]"
                                     }`}>
                                     {step.conversion}
                                 </div>

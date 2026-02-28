@@ -14,11 +14,11 @@ export default function MapPage() {
     return (
         <div className="flex flex-col gap-6 h-full animate-in fade-in duration-500 pb-20 md:pb-6">
             <div>
-                <h2 className="text-xl font-semibold tracking-tight text-white">{t.map.title}</h2>
-                <p className="text-sm text-[var(--color-muted)]">{t.map.subtitle}</p>
+                <h2 className="text-xl font-semibold tracking-tight text-[var(--color-text-main)]">{t.map.title}</h2>
+                <p className="text-sm text-[var(--color-text-soft)]">{t.map.subtitle}</p>
             </div>
 
-            <div className="relative w-full flex-1 min-h-[500px] rounded-[10px] border border-[var(--color-border)] bg-[var(--color-ink-2)] p-6 overflow-hidden flex items-center justify-center">
+            <div className="relative w-full flex-1 min-h-[500px] rounded-[10px] border border-[var(--color-border)] bg-[var(--color-surface)] shadow-sm p-6 overflow-hidden flex items-center justify-center">
                 {/* Abstract Map Grid */}
                 <div className="relative w-full max-w-3xl h-full min-h-[400px]">
 
@@ -53,24 +53,22 @@ export default function MapPage() {
                                     {d.nameHi.substring(0, 3)}
                                 </div>
 
-                                {d.sentiment < 50 && (
-                                    <div className="absolute -top-1 -right-1 rounded-full bg-[var(--color-danger)] p-1 text-white ring-2 ring-[var(--color-ink-2)] animate-pulse">
-                                        <AlertTriangle size={10} />
-                                    </div>
-                                )}
+                                <div className="absolute -top-1 -right-1 rounded-full bg-[var(--color-red)] p-1 text-white ring-2 ring-[var(--color-surface)] animate-pulse">
+                                    <AlertTriangle size={10} />
+                                </div>
 
                                 {/* Tooltip */}
                                 {hoveredId === d.id && (
-                                    <div className="absolute top-full left-1/2 mt-2 -translate-x-1/2 w-48 rounded-[8px] border border-[var(--color-border)] bg-[var(--color-ink)] p-3 shadow-xl z-50 animate-in fade-in zoom-in-95 pointer-events-none">
-                                        <h4 className="font-bold text-white font-hindi mb-2">{d.nameHi} <span className="text-[10px] text-[var(--color-muted)] font-sans ml-1">({d.nameEn})</span></h4>
-                                        <div className="space-y-1.5 text-xs text-[var(--color-muted)]">
+                                    <div className="absolute top-full left-1/2 mt-2 -translate-x-1/2 w-48 rounded-[8px] border border-[var(--color-border)] bg-[var(--color-off-white)] p-3 shadow-xl z-50 animate-in fade-in zoom-in-95 pointer-events-none">
+                                        <h4 className="font-bold text-[var(--color-text-main)] font-hindi mb-2">{d.nameHi} <span className="text-[10px] text-[var(--color-text-soft)] font-sans ml-1">({d.nameEn})</span></h4>
+                                        <div className="space-y-1.5 text-xs text-[var(--color-text-mid)]">
                                             <div className="flex items-center justify-between">
                                                 <div className="flex items-center gap-1.5"><Users size={12} /> Users</div>
-                                                <span className="font-mono text-white">{d.users.toLocaleString()}</span>
+                                                <span className="font-mono text-[var(--color-text-main)] font-medium">{d.users.toLocaleString()}</span>
                                             </div>
                                             <div className="flex items-center justify-between">
                                                 <div className="flex items-center gap-1.5"><AlertTriangle size={12} /> Sentiment</div>
-                                                <span className="font-mono text-white">{d.sentiment}%</span>
+                                                <span className="font-mono text-[var(--color-text-main)] font-medium">{d.sentiment}%</span>
                                             </div>
                                             <div className="pt-1.5 mt-1.5 border-t border-[var(--color-border)]">
                                                 <span className="block mb-1">{t.map.tooltip.concern}:</span>
@@ -85,17 +83,17 @@ export default function MapPage() {
                 </div>
 
                 {/* Legend */}
-                <div className="absolute bottom-4 left-4 rounded-[8px] border border-[var(--color-border)] bg-[var(--color-ink)] p-3 text-xs w-48 shadow-lg">
-                    <h5 className="font-bold text-white mb-2 tracking-tight">Legend</h5>
+                <div className="absolute bottom-4 left-4 rounded-[8px] border border-[var(--color-border)] bg-[var(--color-off-white)] p-3 text-xs w-48 shadow-md">
+                    <h5 className="font-bold text-[var(--color-text-main)] mb-2 tracking-tight">Legend</h5>
                     <div className="space-y-2">
-                        <div className="flex items-center gap-2 text-[var(--color-muted)]">
+                        <div className="flex items-center gap-2 text-[var(--color-text-mid)] font-medium">
                             <div className="h-3 w-3 rounded-full bg-[var(--color-saffron)] opacity-80" /> High Engagement
                         </div>
-                        <div className="flex items-center gap-2 text-[var(--color-muted)]">
+                        <div className="flex items-center gap-2 text-[var(--color-text-mid)] font-medium">
                             <div className="h-3 w-3 rounded-full bg-[var(--color-warning)] opacity-80" /> Moderate Engagement
                         </div>
-                        <div className="flex items-center gap-2 text-[var(--color-muted)]">
-                            <div className="h-3 w-3 rounded-full bg-[var(--color-danger)] opacity-80" /> Low Sentiment (&lt;50%)
+                        <div className="flex items-center gap-2 text-[var(--color-text-mid)] font-medium">
+                            <div className="h-3 w-3 rounded-full bg-[var(--color-red)] opacity-80" /> Low Sentiment (&lt;50%)
                         </div>
                     </div>
                 </div>

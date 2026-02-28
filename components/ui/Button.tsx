@@ -1,29 +1,32 @@
 import * as React from "react";
-import { Slot } from "@radix-ui/react-slot";
 import { cva, type VariantProps } from "class-variance-authority";
-import { cn } from "@/lib/utils";
 import { Loader2 } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 const buttonVariants = cva(
-    "inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50",
+    "inline-flex items-center justify-center rounded-[12px] text-sm font-semibold ring-offset-[var(--color-off-white)] transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-saffron)] focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 active:scale-[0.98]",
     {
         variants: {
             variant: {
-                primary: "bg-[var(--color-saffron)] text-white hover:bg-[var(--color-saffron-2)]",
-                secondary: "bg-[var(--color-ink-3)] text-white border border-[var(--color-border)] hover:bg-[var(--color-ink-2)]",
-                ghost: "bg-transparent text-[var(--color-muted)] hover:bg-[var(--color-ink-3)] text-white",
-                danger: "bg-[var(--color-danger)] text-white hover:bg-[var(--color-danger)]/90",
+                primary: "bg-[var(--color-saffron)] text-white hover:bg-[var(--color-saffron-lt)] shadow-[0_4px_14px_rgba(232,98,26,0.3)]",
+                secondary: "bg-[var(--color-surface)] border-2 border-[var(--color-border)] text-[var(--color-text-mid)] hover:border-[var(--color-saffron)] hover:text-[var(--color-saffron)] hover:bg-[var(--color-saffron-pale)]",
+                ghost: "bg-transparent text-[var(--color-text-soft)] hover:bg-[var(--color-surface-hover)] hover:text-[var(--color-text-main)]",
+                danger: "bg-[var(--color-red-light)] text-[var(--color-red)] hover:bg-[var(--color-red)] hover:text-white",
             },
             size: {
-                sm: "h-8 rounded-md px-3 text-xs",
-                md: "h-10 rounded-md px-4 py-2",
-                lg: "h-12 rounded-md px-8",
-                icon: "h-9 w-9",
+                sm: "h-9 px-4 text-xs",
+                md: "h-11 px-6",
+                lg: "h-14 px-8 text-base rounded-[16px]",
+                icon: "h-11 w-11",
+            },
+            fullWidth: {
+                true: "w-full",
             },
         },
         defaultVariants: {
             variant: "primary",
             size: "md",
+            fullWidth: false,
         },
     }
 );
@@ -31,53 +34,24 @@ const buttonVariants = cva(
 export interface ButtonProps
     extends React.ButtonHTMLAttributes<HTMLButtonElement>,
     VariantProps<typeof buttonVariants> {
-    asChild?: boolean;
-    loading?: boolean;
+    isLoading?: boolean;
 }
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
-    ({ className, variant, size, asChild = false, loading, children, ...props }, ref) => {
-        // We don't have standard Radix setup yet, so we'll just use button if not asChild
-        const Comp = asChild ? Slot : "button";
-
-        return (
-            <Comp
-                className={cn(buttonVariants({ variant, size, className }))}
-                ref={ref}
-                disabled={loading || props.disabled}
-                {...props}
-            >
-                {loading ? (
-                    <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                ) : null}
-                {loading && children ? <span className="opacity-0">{children}</span> : children}
-                {loading && !children && "Loading..."}
-                {/* If we have children and are loading, the structure might be a bit off, best to conditionally show children or spinner */}
-                {/* Actually, let's keep it simple: */}
-                {/* Replace content with spinner conceptually, but keep width. Above trick works okay, but standard is just: */}
-            </Comp>
-        )
-    }
-);
-
-// Better button implementation that handles loading properly while maintaining dimensions
-const ButtonBetter = React.forwardRef<HTMLButtonElement, ButtonProps>(
-    ({ className, variant, size, loading, children, ...props }, ref) => {
+    ({ className, variant, size, fullWidth, isLoading, children, ...props }, ref) => {
         return (
             <button
-                className={cn(buttonVariants({ variant, size, className }))}
+                className={cn(buttonVariants({ variant, size, fullWidth, className }))}
                 ref={ref}
-                disabled={loading || props.disabled}
+                disabled={isLoading || props.disabled}
                 {...props}
             >
-                {loading && <Loader2 className="absolute h-4 w-4 animate-spin" />}
-                <span className={cn(loading && "opacity-0", "flex items-center justify-center gap-2")}>
-                    {children}
-                </span>
+                {isLoading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
+                {!isLoading && children}
             </button>
         );
     }
 );
-ButtonBetter.displayName = "Button";
+Button.displayName = "Button";
 
-export { ButtonBetter as Button, buttonVariants };
+export { Button, buttonVariants };

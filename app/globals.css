@@ -1,22 +1,42 @@
 @import "tailwindcss";
 
 @theme {
-  --color-ink: #0D0D12;
-  --color-ink-2: #16161E;
-  --color-ink-3: #1E1E28;
-  --color-border: #2A2A38;
-  --color-saffron: #E8631A;
-  --color-saffron-2: #FF7535;
-  --color-saffron-glow: rgba(232, 99, 26, 0.15);
-  --color-white: #FFFFFF;
-  --color-muted: #6B6B80;
-  --color-subtle: #3A3A4A;
-  --color-positive: #22C55E;
-  --color-warning: #F59E0B;
-  --color-danger: #EF4444;
+  /* Primary Brand */
+  --color-saffron: #E8621A;
+  --color-saffron-lt: #FF7B35;
+  --color-saffron-pale: #FFF3EB;
 
-  --color-background: var(--color-ink);
-  --color-foreground: var(--color-white);
+  /* Navy / Dark Accents */
+  --color-navy: #141527;
+  --color-navy-mid: #1E2040;
+  --color-navy-soft: #2A2D55;
+
+  /* Core UI */
+  --color-gold: #F5A623;
+  --color-gold-lt: #FFD166;
+  --color-white: #FFFFFF;
+  --color-off-white: #FFFAF6;
+  --color-surface: #FFFFFF;
+  --color-surface-hover: #F8F9FF;
+  /* soft blue tint for hovers */
+
+  /* Text */
+  --color-text-main: #1A1B35;
+  --color-text-mid: #4A4E6B;
+  --color-text-soft: #8B8FA8;
+
+  /* Utils */
+  --color-border: #E8E9F2;
+  --color-border-hover: #D0D2E0;
+  --color-green: #2E9E6B;
+  --color-green-light: #E8F7F0;
+  --color-red: #E84545;
+  --color-red-light: #FFE8E8;
+  --color-blue: #3A7BFF;
+  --color-blue-light: #EEF4FF;
+
+  --color-background: var(--color-off-white);
+  --color-foreground: var(--color-text-main);
 
   --font-inter: var(--font-inter);
   --font-noto: var(--font-noto);
@@ -36,19 +56,20 @@
   --spacing-12: 48px;
   --spacing-16: 64px;
 
-  --radius-sm: 6px;
-  --radius-md: 10px;
-  --radius-lg: 16px;
+  --radius-sm: 10px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
   --radius-pill: 999px;
 
-  --shadow-card: 0 1px 3px rgba(0, 0, 0, 0.4), 0 0 0 1px var(--color-border);
-  --shadow-modal: 0 24px 80px rgba(0, 0, 0, 0.6);
+  --shadow-sm: 0 2px 8px rgba(20, 21, 39, 0.08);
+  --shadow-md: 0 8px 24px rgba(20, 21, 39, 0.12);
+  --shadow-lg: 0 20px 60px rgba(20, 21, 39, 0.18);
 }
 
 @layer base {
   :root {
-    --background: var(--color-ink);
-    --foreground: var(--color-white);
+    --background: var(--color-off-white);
+    --foreground: var(--color-text-main);
   }
 
   body {

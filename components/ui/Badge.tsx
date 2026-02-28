@@ -3,18 +3,16 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 
 const badgeVariants = cva(
-    "inline-flex items-center rounded-[6px] border px-2.5 py-0.5 text-[12px] font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2",
+    "inline-flex items-center gap-1.5 rounded-[6px] px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-wider transition-colors",
     {
         variants: {
             variant: {
-                category:
-                    "border-transparent bg-[var(--color-ink-3)] text-white",
-                priority:
-                    "border-transparent bg-[var(--color-ink-3)] text-white",
-                district:
-                    "border-[var(--color-border)] text-white bg-transparent",
-                status:
-                    "border-transparent text-white",
+                category: "bg-[var(--color-saffron-pale)] text-[var(--color-saffron)]",
+                priority_high: "bg-[var(--color-red-light)] text-[var(--color-red)]",
+                priority_med: "bg-[#FFF8E7] text-[#B8860B]",
+                priority_low: "bg-[var(--color-green-light)] text-[var(--color-green)]",
+                district: "bg-[var(--color-blue-light)] text-[var(--color-blue)] border border-[var(--color-blue)]/20",
+                status: "bg-[var(--color-surface)] text-[var(--color-text-mid)] border border-[var(--color-border)]",
             },
         },
         defaultVariants: {
@@ -26,16 +24,16 @@ const badgeVariants = cva(
 export interface BadgeProps
     extends React.HTMLAttributes<HTMLDivElement>,
     VariantProps<typeof badgeVariants> {
-    colorDot?: string;
+    dotColor?: string;
 }
 
-function Badge({ className, variant, colorDot, children, ...props }: BadgeProps) {
+function Badge({ className, variant, dotColor, children, ...props }: BadgeProps) {
     return (
         <div className={cn(badgeVariants({ variant }), className)} {...props}>
-            {colorDot && (
+            {dotColor && (
                 <span
-                    className="mr-1.5 h-2 w-2 rounded-full"
-                    style={{ backgroundColor: colorDot }}
+                    className="h-1.5 w-1.5 rounded-full"
+                    style={{ backgroundColor: dotColor }}
                 />
             )}
             {children}
