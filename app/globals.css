@@ -1,0 +1,72 @@
+@import "tailwindcss";
+
+@theme {
+  --color-ink: #0D0D12;
+  --color-ink-2: #16161E;
+  --color-ink-3: #1E1E28;
+  --color-border: #2A2A38;
+  --color-saffron: #E8631A;
+  --color-saffron-2: #FF7535;
+  --color-saffron-glow: rgba(232, 99, 26, 0.15);
+  --color-white: #FFFFFF;
+  --color-muted: #6B6B80;
+  --color-subtle: #3A3A4A;
+  --color-positive: #22C55E;
+  --color-warning: #F59E0B;
+  --color-danger: #EF4444;
+
+  --color-background: var(--color-ink);
+  --color-foreground: var(--color-white);
+
+  --font-inter: var(--font-inter);
+  --font-noto: var(--font-noto);
+  --font-mono: var(--font-mono);
+
+  --font-sans: var(--font-inter), system-ui, sans-serif;
+  --font-hindi: var(--font-noto), sans-serif;
+
+  --spacing-1: 4px;
+  --spacing-2: 8px;
+  --spacing-3: 12px;
+  --spacing-4: 16px;
+  --spacing-5: 20px;
+  --spacing-6: 24px;
+  --spacing-8: 32px;
+  --spacing-10: 40px;
+  --spacing-12: 48px;
+  --spacing-16: 64px;
+
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+  --radius-pill: 999px;
+
+  --shadow-card: 0 1px 3px rgba(0, 0, 0, 0.4), 0 0 0 1px var(--color-border);
+  --shadow-modal: 0 24px 80px rgba(0, 0, 0, 0.6);
+}
+
+@layer base {
+  :root {
+    --background: var(--color-ink);
+    --foreground: var(--color-white);
+  }
+
+  body {
+    background-color: var(--background);
+    color: var(--foreground);
+    line-height: 1.5;
+  }
+}
+
+@layer components {
+
+  /* Hiding scrollbars for cleaner horizontal lists */
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}
